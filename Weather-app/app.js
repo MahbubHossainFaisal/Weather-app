@@ -1,14 +1,8 @@
-//Asynchronous behaviour
+const request = require('request')
 
-console.log('Starting')
+const url = 'http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=b4e4685dd80a84e9cb33014900f411aa'
 
-setTimeout(() => {
-    console.log('This is being printed in the console after 3 second') // This will print after 3 second when starting and stopping will already be printed
-
-},3000)
-
-setTimeout(()=> {
-    console.log('0 sec timer')
-},0)
-
-console.log('stopping')
+request({ url: url}, (error,response) => {
+    const data = JSON.parse(response.body)
+    console.log(data)
+})
