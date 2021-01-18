@@ -17,3 +17,19 @@ request({ url: url, json: true }, (error,response) => {
 
 //Geocoding 
 
+
+const geocodeURL='https://api.mapbox.com/geocoding/v5/mapbox.places/los%20Angeles.json?access_token=pk.eyJ1IjoibWFoYnViaG9zc2FpbiIsImEiOiJja2syaHFuZGgwYjdwMndudTI4ZHlwanp3In0.BeiFxca5C3lHuJjHnxsnfg&limit=1'
+
+request({url:geocodeURL,json: true},(error,response) => {
+
+    if(error) {
+        console.log('Unable to connect to the map service!!!')
+    } else if(response.body.message || response.body.features.length===0) {
+        console.log('Unable to find location! Try again ')
+    } else {
+        const latitude = response.body.features[0].center[0]
+        const longitude = response.body.features[0].center[1]
+        console.log('Latitude: '+latitude+', Longitude: '+longitude)
+    }
+    
+}) 
