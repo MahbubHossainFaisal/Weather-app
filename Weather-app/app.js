@@ -1,4 +1,5 @@
 const request = require('request')
+const geocode = require('./utils/geocode')
 
 const url = 'https://api.openweathermap.org/data/2.5/onecall?lat=23.8103&lon=90.4125&appid=a2e219452bdf467ba708d8cd19f5c4d1&units=metric'
 
@@ -35,27 +36,10 @@ request({ url: url, json: true }, (error,response) => {
 // }) 
 
 
-const geocode = (address,callback) => {
-
-    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + address + '.json?access_token=pk.eyJ1IjoibWFoYnViaG9zc2FpbiIsImEiOiJja2syaHFuZGgwYjdwMndudTI4ZHlwanp3In0.BeiFxca5C3lHuJjHnxsnfg&limit=1'
-
-    request({url: url, json: true},(error,response)=>{
-        if(error){
-            callback('Unable to connect to the location service!',undefined)
-        } else if(response.body.message || response.body.features.length===0){
-            callback('Unable to find location! Try again',undefined)
-        } else {
-            callback(undefined,{
-                latitude:response.body.features[0].center[0],
-                longitude:response.body.features[0].center[1],
-                location: response.body.features[0].place_name
-            })
-        }
-    })
-}
 
 
-geocode('Himachal',(error,data) => {
+
+geocode('Rajshahi',(error,data) => {
     console.log(error)
     console.log(data)
 })
