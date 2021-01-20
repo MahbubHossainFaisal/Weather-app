@@ -1,9 +1,13 @@
 const forecast = require('./utils/forecast')
 const geocode = require('./utils/geocode')
 
+const address = process.argv[2]
 
+if(!address) {
+    console.log('Please provide an address!')
+} else {
 
-geocode('Narayanganj',(error,locationData) => {
+    geocode(address,(error,locationData) => {
     if(error){
         return console.log(error)
     }
@@ -18,3 +22,8 @@ geocode('Narayanganj',(error,locationData) => {
         console.log('Weather status: '+forecastData.weatherStatus)
     })
 })
+
+
+}
+
+
