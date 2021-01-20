@@ -7,19 +7,21 @@ if(!address) {
     console.log('Please provide an address!')
 } else {
 
-    geocode(address,(error,locationData) => {
+    geocode(address,(error,{latitude,longitude,location}) => {
     if(error){
         return console.log(error)
     }
 
-    forecast(locationData.latitude,locationData.longitude,(error,forecastData)=>{
+    forecast(latitude,longitude,(error,{tempurature,weatherStatus})=>{
         if(error){
             return console.log(error)
         }
-        console.log(locationData.location)
+        console.log(location)
         //console.log(forecastData)
-        console.log('Current tempurature is ' + forecastData.tempurature + ' degress')
-        console.log('Weather status: '+forecastData.weatherStatus)
+        console.log('Current tempurature is ' + tempurature + ' degress')
+        console.log('Weather status: '+weatherStatus)
+
+
     })
 })
 
