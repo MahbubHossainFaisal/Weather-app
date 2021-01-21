@@ -1,21 +1,19 @@
+const path = require('path') // Built in node module.So no need to install
 const exrpess = require('express')
 
 
 const app = exrpess()
 
 
-app.get('', (req,res)=> {
+const publicDirectoryPath = path.join(__dirname,'../public')
+//const publicDirectoryAboutPath =path.join(__dirname,'../public/about.html')
+//const publicDirectoryHelpPath = path.join(__dirname,'../public/help.html')
 
-    res.send('Hello,This is express')
-})
+app.use(exrpess.static(publicDirectoryPath))
 
-app.get('/help', (req,res)=> {
-    res.send('This is help page')
-})
+//app.use(exrpess.static(publicDirectoryAboutPath))
 
-app.get('/about', (req,res)=> {
-    res.send('This is about page')
-})
+//app.use(exrpess.static(publicDirectoryHelpPath))
 
 app.get('/weather', (req,res) => {
     res.send('This is weather page')
