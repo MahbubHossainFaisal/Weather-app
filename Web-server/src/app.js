@@ -6,14 +6,14 @@ const app = exrpess()
 
 
 const publicDirectoryPath = path.join(__dirname,'../public')
-//const publicDirectoryAboutPath =path.join(__dirname,'../public/about.html')
-//const publicDirectoryHelpPath = path.join(__dirname,'../public/help.html')
+
+app.set('view engine','hbs')
 
 app.use(exrpess.static(publicDirectoryPath))
 
-//app.use(exrpess.static(publicDirectoryAboutPath))
-
-//app.use(exrpess.static(publicDirectoryHelpPath))
+app.get('', (req,res) => {
+    res.render('index')
+})
 
 app.get('/weather', (req,res) => {
     res.send('This is weather page')
