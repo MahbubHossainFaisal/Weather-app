@@ -4,11 +4,16 @@ const exrpess = require('express')
 
 const app = exrpess()
 
-
+//Define paths for express config
 const publicDirectoryPath = path.join(__dirname,'../public')
+const viewsDirectoryPath = path.join(__dirname,'../templates')
 
+
+//setup handlebar engine and views location
 app.set('view engine','hbs')
+app.set('views', viewsDirectoryPath)
 
+//setup static directory to serve
 app.use(exrpess.static(publicDirectoryPath))
 
 app.get('', (req,res) => {
