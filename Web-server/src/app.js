@@ -41,8 +41,22 @@ app.get('/help', (req,res) => {
     })
 })
 
-app.get('/weather', (req,res) => {
-    res.send('This is weather page')
+
+app.get('/help/*',(req,res) =>{
+    res.render('404',{
+        title:'404',
+        errorMessage: 'Help article not found!',
+        name:'Mahbub Hossain Faisal'
+    } )
+})
+
+app.get('*', (req,res) => {
+    res.render('404',{
+        title: '404',
+        errorMessage:'Page not found!',
+        name:'Mahbub Hossain Faisal'
+        
+    })
 })
 
 
