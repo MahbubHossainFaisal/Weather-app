@@ -1,6 +1,8 @@
 const path = require('path') // Built in node module.So no need to install
 const exrpess = require('express')
 const hbs = require('hbs')
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
 
 const app = exrpess()
 
@@ -57,10 +59,20 @@ app.get('/weather', (req,res) => {
         })
     }
 
-    res.send({
-        forecast:'It is foggy',
-        location: 'Dhaka',
-        adddress: req.query.address
+    geocode(req.query.address, (error, {latitude,longitude,location}) => {
+        if(error){
+            return res.send({error})
+        }
+        forecast(latitude,longitude,(error,forecastData) => {
+            if(error){
+                return res.send({error})
+            }
+            res.send({
+                forecast: forecastData,
+                location,
+                address: req.query.address
+            })
+        })
     })
 })
 
