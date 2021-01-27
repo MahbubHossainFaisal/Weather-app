@@ -7,16 +7,23 @@
     <title>Index</title>
     <link rel="icon" href="./img/weather.png">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/script.js"> </script>
+    
 </head>
 
 <body>
    <div class="main-content">
         {{>header}}
-        <p>Use this site to get weather updates!</p>
+        <p>Get weather updates by searching any location!</p>
+
+        <form>
+            <input type="text" placeholder="location">
+            <button>Search</button>
+        </form>
    </div>
     
     {{>footer}}
+
+    <script src="js/script.js"> </script>
 </body>
 
 </html>
