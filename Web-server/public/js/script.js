@@ -27,7 +27,7 @@ weatherForm.addEventListener('submit',(e)=>{
             const tempurature = data.forecast.tempurature
             const status = data.forecast.weatherStatus
 
-            messageOne.textContent = ('Tempurature: ')+ tempurature + (' degrees, Weather status: '+ status)
+            messageOne.textContent = ('Tempurature: ')+ tempurature + ('°C, Weather status: '+ status)
             messageTwo.textContent = 'Location: '+ data.location
            
         }
